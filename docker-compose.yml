@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py migrate &&
+             daphne -b 0.0.0.0 -p 8000 ai_support_chat.asgi:application"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=${SECRET_KEY}
+      - OPEN_AI_TOKEN=${OPEN_AI_TOKEN}
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A ai_support_chat worker --loglevel=info
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=${SECRET_KEY}
+      - OPEN_AI_TOKEN=${OPEN_AI_TOKEN}
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A ai_support_chat beat --loglevel=info
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=${SECRET_KEY}
+      - OPEN_AI_TOKEN=${OPEN_AI_TOKEN}
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
