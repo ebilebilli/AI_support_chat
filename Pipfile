@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = {extras = ["restframework"], version = "*"}
+rest-framework-simplejwt = "*"
+openai = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+channels-redis = "*"
+celery = "*"
+docker = "*"
+dotenv = "*"
+daphne = "*"
+channels = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"
