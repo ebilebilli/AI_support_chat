@@ -10,11 +10,11 @@ openai = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 channels-redis = "*"
-channels = "*"
 celery = "*"
 docker = "*"
 dotenv = "*"
 daphne = "*"
+channels = "*"
 
 [dev-packages]
 

@@ -6,10 +6,15 @@ from chat.tasks import generate_ai_response_task
 
 class AIChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.room_name = 'ai_chat_room'
-        self.room_group_name = f'chat_{self.room_name}'
+        self.user = self.scope['user']
+        if not self.user.is_authenticated:
+            await self.close() 
+        
+        else:
+            self.room_name = 'ai_chat_room'
+            self.room_group_name = f'chat_{self.room_name}'
 
-        await self.accept()
+            await self.accept()
 
     async def receive(self, text_data):
         try:

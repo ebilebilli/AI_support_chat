@@ -13,11 +13,15 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=True
+      - DEBUG=${DEBUG}
       - SECRET_KEY=${SECRET_KEY}
       - OPEN_AI_TOKEN=${OPEN_AI_TOKEN}
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - JWT_ACCESS_TOKEN_LIFETIME=${JWT_ACCESS_TOKEN_LIFETIME}
+      - JWT_REFRESH_TOKEN_LIFETIME=${JWT_REFRESH_TOKEN_LIFETIME}
     depends_on:
       - redis
     networks:
@@ -31,11 +35,15 @@ services:
     volumes:
       - .:/app
     environment:
-      - DEBUG=True
+      - DEBUG=${DEBUG}
       - SECRET_KEY=${SECRET_KEY}
       - OPEN_AI_TOKEN=${OPEN_AI_TOKEN}
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - JWT_ACCESS_TOKEN_LIFETIME=${JWT_ACCESS_TOKEN_LIFETIME}
+      - JWT_REFRESH_TOKEN_LIFETIME=${JWT_REFRESH_TOKEN_LIFETIME}
     depends_on:
       - redis
     networks:
@@ -49,11 +57,15 @@ services:
     volumes:
       - .:/app
     environment:
-      - DEBUG=True
+      - DEBUG=${DEBUG}
       - SECRET_KEY=${SECRET_KEY}
       - OPEN_AI_TOKEN=${OPEN_AI_TOKEN}
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - JWT_ACCESS_TOKEN_LIFETIME=${JWT_ACCESS_TOKEN_LIFETIME}
+      - JWT_REFRESH_TOKEN_LIFETIME=${JWT_REFRESH_TOKEN_LIFETIME}
     depends_on:
       - redis
     networks:
