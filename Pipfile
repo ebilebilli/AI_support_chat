@@ -15,6 +15,7 @@ docker = "*"
 dotenv = "*"
 daphne = "*"
 channels = "*"
+drf-yasg = "*"
 
 [dev-packages]
 

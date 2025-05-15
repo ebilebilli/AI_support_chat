@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'channels',
+    'drf_yasg',
     #apps
     'chat',
     'users',
