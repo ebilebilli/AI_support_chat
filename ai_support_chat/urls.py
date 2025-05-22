@@ -6,9 +6,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Kitabxana API",
+        title="AI support chat APIs",
         default_version='v1',
-        description="Kitablar və şərhlər üçün API sənədi",
+        description="Simple API documentaion for project",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
